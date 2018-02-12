@@ -20,6 +20,24 @@ gulp.task('jekyll-build', function (done) {
 });
 
 /*
+ * Rebuild Jekyll & reload browserSync
+ */
+gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
+	browserSync.reload();
+});
+
+/*
+ * Build the jekyll site and launch browser-sync
+ */
+gulp.task('browser-sync', ['jekyll-build'], function() {
+	browserSync({
+		server: {
+			baseDir: '_site'
+		}
+	});
+});
+
+/*
 * Compile and minify sass
 */
 gulp.task('sass', function() {
